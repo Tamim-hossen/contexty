@@ -11,7 +11,7 @@ export const useTextStore = create((set)=>({
             const response =await AxiosInstance.post('/check',{text})
             return response
         } catch (error) {
-            console.log(error.response.data.message)
+            console.log('Server full. Try again in a minute.')
         }finally{
             set({checkingGrammer:false})
         }
@@ -22,7 +22,7 @@ export const useTextStore = create((set)=>({
             const response =await AxiosInstance.post('/paraphrase',{text})
             return response
         } catch (error) {
-            console.log(error.response.data.message)
+            console.log('Server full. Try again in a minute.')
         }finally{
             set({paraphrasing:false})
         }
