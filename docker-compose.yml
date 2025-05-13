@@ -1,0 +1,40 @@
+services:
+  backend:
+    build: 
+      context: /server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/app
+      - /app/node-modules
+    networks:
+      - grammerapp
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    command: npm run dev
+    env_file:
+      - ./server/.env
+  frontend:
+    build: 
+      context: /client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/app
+      - client_node_modules:/app/node_modules
+    networks:
+      - grammerapp
+    ports:
+      - 5173:5173
+    restart: unless-stopped
+    command: npm run dev -- --host
+    env_file:
+      - ./client/.env
+    depends_on:
+      - backend
+
+networks:
+  grammerapp:
+    driver: bridge
+volumes:
+  client_node_modules:
+  server_node_modules:
