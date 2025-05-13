@@ -6,7 +6,7 @@ export default defineConfig({
   server:{
     host:true,
     port:5173,
-    allowedHosts:'http://localhost:5000',
+    allowedHosts:['http://localhost:5000','https://contexty.onrender.com'],
     watch:{
       usePolling:true,
     }
