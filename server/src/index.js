@@ -8,7 +8,7 @@ const PORT = 5000
 dotenv.config()
 
 app.use(cors({
-    origin:['http://localhost:5173','http://contexty-eng.vercel.app'],
+    origin:process.env.ORIGIN,
     credentials:true,
 }))
 app.use(express.json({limit:'10mb'}))
